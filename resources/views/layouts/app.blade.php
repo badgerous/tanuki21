@@ -34,10 +34,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">{{ __('Startseite') }}</a>
+                                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">{{ __('Start') }}</a>
                             </li>
+                            {{-- <li class="nav-item">
+                                <a class="nav-link {{ Request::is('/post*') ? 'active' : '' }}" href="/blog">{{ __('Posts') }}</a>
+                            </li> --}}
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('blog') ? 'active' : '' }}" href="/blog">{{ __('Blog') }}</a>
+                                <a class="nav-link {{ Request::is('blog*') ? 'active' : '' }}" href="/blog">{{ __('Blog') }}</a>
                             </li>
                     </ul>
 

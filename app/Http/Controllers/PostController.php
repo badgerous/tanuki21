@@ -14,7 +14,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        #dd($posts);
+        return view('post.index')->with('posts', $posts);
     }
 
     /**
@@ -24,7 +26,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $posts = Post::all();
+        return view('post.create')->with('posts', $posts);
     }
 
     /**
@@ -35,7 +38,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post(
+            [
+                'title' => $request->title,
+                'content' => $request->content,
+            ]
+        );
+        $post->save();
+        return redirect('/blog');
     }
 
     /**
