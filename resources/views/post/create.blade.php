@@ -18,12 +18,14 @@
                             @csrf
                             <div class="form-group">
                                 <label for="title">{{ __('Title') }}</label>
-                                <input type="text" class="form-control" id="title" name="title"
-                                    value="{{ old('title') }}">
+                                <input type="text" class="form-control {{ $errors->has('title') ? 'border-danger' : '' }}"
+                                    id="title" name="title" value="{{ old('title') }}">
+                                <small class="form-text text-danger">{!! $errors->first('title') !!}</small>
                             </div>
                             <div class="form-group">
                                 <label for="content">{{ __('Content') }}</label>
-                                <textarea class="form-control" name="content" id="content" cols="30" rows="10" value="{{ old('content') }}"></textarea>
+                                <textarea class="form-control {{ $errors->has('content') ? 'border-danger' : '' }}" name="content" id="content" cols="30" rows="10" value="{{ old('content') }}"></textarea>
+                                <small class="form-text text-danger">{!! $errors->first('content') !!}</small>
                             </div>
                             <input class="btn btn-light mt-4" type="submit" value="{{ __('Submit') }}">
                         </form>
