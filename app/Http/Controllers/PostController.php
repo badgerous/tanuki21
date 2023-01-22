@@ -25,7 +25,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {        
         $posts = Post::all();
         return view('post.create')->with('posts', $posts);
     }
@@ -38,6 +38,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'title' => 'required|min:3',
+                'content' => 'required|min:5'
+            ]
+        );
+
         $post = new Post(
             [
                 'title' => $request->title,
