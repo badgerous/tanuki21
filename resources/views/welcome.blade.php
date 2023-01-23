@@ -81,22 +81,18 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Hallo {{ auth()->user()->name ?? '' }}
-                </div>
-
-                <div>
-                    {!! "<b>Bold text</b>" !!}
+                    tanuki21
+                    {{-- Hallo {{ auth()->user()->name ?? '' }} --}}
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="about">About</a>
+                    <a href="gallery">Gallery</a>
+                    <a href="news">News</a>
+                    <a href="blog">Blog</a>
+                    <a href="projects">Projects</a>
+                    <a href="https://github.com/badgerous/blog">GitHub</a>
+                    <a href="contact">Kontakt</a>
                 </div>
             </div>
         </div>

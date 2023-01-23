@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5>{{ __('Blog') }}</h5>
+                        <h5 class="mb-0">{{ __('Blog') }}</h5>
                         <a class="btn" title="{{ __('new post') }}" href="/blog/create"><i class="fas fa-plus"></i></a>
                     </div>
 
@@ -20,16 +20,20 @@
                                 <div class="card mb-4">
                                     <div class="card-header d-flex justify-content-between align-items-center">
                                         <div>
-                                            {{ $post->title }}
+                                            <a href="/blog/{{ $post->id }}">{{ $post->title }}</a>
                                             <small class="font-italic">
                                                 {{ __('created at') }}: {{ $post->created_at }}
                                             </small>
                                         </div>
                                         <div>
-                                            <a class="btn" title="{{ __('edit post') }}" href="blog/edit"><i
-                                                    class="fas fa-pencil"></i></a>
-                                            <a class="btn" title="{{ __('delete post') }}" href="blog/destroy"><i
-                                                    class="fas fa-trash"></i></a>
+                                            <a class="btn" title="{{ __('edit post') }}"
+                                                href="/blog/{{ $post->id }}/edit"><i class="fas fa-pencil"></i></a>
+                                            <form class="d-inline" action="/blog/{{ $post->id }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn" title="{{ __('delete post') }}"><i
+                                                    class="fas fa-trash"></i></button>
+                                            </form>
                                         </div>
                                     </div>
                                     <div class="card-body">

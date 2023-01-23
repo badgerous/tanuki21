@@ -25,4 +25,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('blog', 'PostController');
+Route::resource('blog', 'PostController')->parameters(['blog' => 'post']);
+Route::resource('tag', 'TagController');

@@ -48,6 +48,10 @@
                             <a class="nav-link {{ Request::is('blog*') ? 'active' : '' }}"
                                 href="/blog">{{ __('Blog') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('tag*') ? 'active' : '' }}"
+                                href="/tag">{{ __('Tags') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -88,6 +92,19 @@
         </nav>
 
         <main class="py-4">
+
+            @isset($msg_success)
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="alert alert-success">
+                                {!! $msg_success !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endisset
+
             @if ($errors->any())
                 <div class="container">
                     <div class="row justify-content-center">

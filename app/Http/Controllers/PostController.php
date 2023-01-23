@@ -14,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        // $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
         #dd($posts);
         return view('post.index')->with('posts', $posts);
     }
@@ -25,9 +26,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
-        $posts = Post::all();
-        return view('post.create')->with('posts', $posts);
+    {
+        return view('post.create');
     }
 
     /**
@@ -41,7 +41,7 @@ class PostController extends Controller
         $request->validate(
             [
                 'title' => 'required|min:3',
-                'content' => 'required|min:5'
+                'content' => 'required|min:5',
             ]
         );
 
@@ -52,7 +52,10 @@ class PostController extends Controller
             ]
         );
         $post->save();
-        return redirect('/blog');
+        return $this->index()->with([
+            'msg_success' => 'Post <strong>' . $post->title . '</strong> successfully created.',
+        ]);
+        // return redirect('/blog');
     }
 
     /**
@@ -63,7 +66,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        // $post = Post::all();
+        // dd($post);
+        return view('post.show')->with('post', $post);
     }
 
     /**
@@ -74,7 +79,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('post.edit')->with('post', $post);
     }
 
     /**
@@ -86,7 +91,20 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate(
+            [
+                'title' => 'required|min:3',
+                'content' => 'required|min:5',
+            ]
+        );
+
+        $post->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+        return $this->index()->with([
+            'msg_success' => 'Post <strong>' . $request->title . '</strong> successfully changed.',
+        ]);
     }
 
     /**
@@ -97,6 +115,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        // $old_name = $post->title;
+        $post->delete();
+        return $this->index()->with([
+            'msg_success' => 'Post successfully deleted.',
+        ]);
     }
 }
