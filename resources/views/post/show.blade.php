@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <strong>{{ $post->title }}</strong>
-                        <a title="{{ __('back to blog') }}" class="btn" href="/blog"><i class="fas fa-arrow-left"></i></a>
+                        <a title="{{ __('back to blog') }}" class="btn" href="{{ URL::previous() }}"><i class="fas fa-arrow-left"></i></a>
                     </div>
                     <div class="card-body">
                       {{ $post->content }}

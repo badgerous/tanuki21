@@ -4,17 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Comment extends Model
 {
-    protected $fillable = ['name', 'style'];
+        protected $fillable = ['content'];
 
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function posts()
+    public function post()
     {
-        return $this->belongsToMany('App\Post');
+        return $this->belongsTo('App\Post');
     }
 }

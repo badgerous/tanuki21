@@ -46,6 +46,9 @@
                                     </div>
                                 </div>
                             @endforeach
+                            <div>
+                                {{ $posts-links() }}
+                            </div>
                         @endif
                     </div>
                 </div>
