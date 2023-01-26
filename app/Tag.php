@@ -12,4 +12,11 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\Post');
     }
+
+    public function filteredPosts()
+    {
+        return $this->belongsToMany('App\Post')
+            ->wherePivot('tag_id', $this->id)
+            ->orderBy('updated_at', 'DESC');
+    }
 }

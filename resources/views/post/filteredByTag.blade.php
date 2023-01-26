@@ -8,15 +8,15 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">{{ __('Blog') }}</h5>
-                        @auth
-                            <a class="btn" title="{{ __('new post') }}" href="/blog/create"><i class="fas fa-plus"></i></a>
-                        @endauth
+                        <h5 class="mb-0">{{ __('Posts with tag') }}: <span
+                                class="badge badge-{{ $tag->style }}">{{ $tag->name }}</span></h5>
+                        <a title="{{ __('back to blog') }}" class="btn" href="/blog"><i
+                                class="fas fa-arrow-left"></i></a>
                     </div>
 
                     <div class="card-body">
                         @if ($posts->isEmpty())
-                            {{ __('You have no posts yet.') }}
+                            {{ __('Nothing found.') }}
                         @else
                             @foreach ($posts as $post)
                                 <div class="card mb-4">

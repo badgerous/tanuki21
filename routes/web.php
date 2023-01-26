@@ -28,3 +28,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('blog', 'PostController')->parameters(['blog' => 'post']);
 Route::resource('tag', 'TagController');
 Route::resource('user', 'UserController');
+
+Route::get('/blog/tag/{tag_id}', 'postTagController@getFilteredPosts')->name('blog_tag');
