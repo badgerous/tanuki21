@@ -9,7 +9,9 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">{{ __('Blog') }}</h5>
-                        <a class="btn" title="{{ __('new post') }}" href="/blog/create"><i class="fas fa-plus"></i></a>
+                        @auth
+                            <a class="btn" title="{{ __('new post') }}" href="/blog/create"><i class="fas fa-plus"></i></a>
+                        @endauth
                     </div>
 
                     <div class="card-body">
@@ -32,14 +34,18 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn" title="{{ __('delete post') }}"><i
-                                                    class="fas fa-trash"></i></button>
+                                                        class="fas fa-trash"></i></button>
                                             </form>
                                         </div>
                                     </div>
                                     <div class="card-body">
                                         {{ $post->content }}
                                     </div>
-                                    <div class="card-footer">
+                                    <div class="card-footer d-flex justify-content-between">
+                                        <div>
+                                            <small>{{ __('author') }}:</small> {{ $post->user->name }}
+                                            <small>({{ $post->user->posts->count() }} {{ __('posts') }})</small>
+                                        </div>
                                         <small class="font-italic">
                                             {{ __('last updated') }}: {{ $post->updated_at }}
                                         </small>
@@ -47,7 +53,7 @@
                                 </div>
                             @endforeach
                             <div>
-                                {{ $posts-links() }}
+                                {{ $posts->links() }}
                             </div>
                         @endif
                     </div>

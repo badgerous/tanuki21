@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class PostController extends Controller
 {
@@ -16,6 +17,7 @@ class PostController extends Controller
     {
         // $posts = Post::all();
         $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
+        // Carbon::
         #dd($posts);
         return view('post.index')->with('posts', $posts);
     }
@@ -49,6 +51,7 @@ class PostController extends Controller
             [
                 'title' => $request->title,
                 'content' => $request->content,
+                'user_id' => auth()->id(),
             ]
         );
         $post->save();
