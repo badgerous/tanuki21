@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         // $posts = Post::all();
-        $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
+        $posts = Post::where('user_id', auth()->id())->orderBy('created_at', 'DESC')->paginate(10);
         // Carbon::
         #dd($posts);
         return view('post.index')->with('posts', $posts);
