@@ -21,10 +21,13 @@
                                     <li
                                         class="list-group-item d-flex justify-content-between wrap-nowrap align-items-center">
                                         <div>
-                                            <span style="font-size: 1em" class="badge badge-{{ $tag->style }}">{{ $tag->name }}</span>
-                                            <small class="font-italic">
-                                                {{ __('created at') }}: {{ $tag->created_at }}
-                                            </small>
+                                            <span style="font-size: 1em"
+                                                class="badge badge-{{ $tag->style }}">{{ $tag->name }}</span>
+                                            <a href="/blog/tag/{{ $tag->id }}">
+                                                <small class="font-italic">
+                                                    {{ __('used') }} {{ $tag->posts->count() }} {{ __('times') }}
+                                                </small>
+                                            </a>
                                         </div>
                                         <div>
                                             <a class="btn" title="{{ __('edit tag') }}"
