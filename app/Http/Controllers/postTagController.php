@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\Tag;
 
 class postTagController extends Controller
@@ -18,5 +19,19 @@ class postTagController extends Controller
                 'tag' => $current_tag,
             ]
         );
+    }
+
+    public function attachTag($post_id, $tag_id)
+    {
+        $post = Post::find($post_id);
+        $post->tags()->attach($tag_id);
+        return back()->with('msg_success', 'Tag added');
+    }
+
+    public function detachTag($post_id, $tag_id)
+    {
+        $post = Post::find($post_id);
+        $post->tags()->detach($tag_id);
+        return back()->with('msg_success', 'Tag removed');
     }
 }

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,3 +30,5 @@ Route::resource('tag', 'TagController');
 Route::resource('user', 'UserController');
 
 Route::get('/blog/tag/{tag_id}', 'postTagController@getFilteredPosts')->name('blog_tag');
+Route::get('/blog/{post_id}/{tag_id}/attach', 'postTagController@attachTag')->name('attach_tag');
+Route::get('/blog/{post_id}/{tag_id}/detach', 'postTagController@detachTag')->name('detach_tag');

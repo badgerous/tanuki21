@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
@@ -82,7 +83,18 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.edit')->with('post', $post);
+        $all_tags = Tag::all();
+        $used_tags = $post->tags;
+        $available_tags = $all_tags->diff($used_tags);
+
+        $msg_success = Session::get('msg_success');
+        return view('post.edit')->with(
+            [
+                'post' => $post,
+                'available_tags' => $available_tags,
+                'msg_success' => $msg_success,
+            ]
+        );
     }
 
     /**
