@@ -15,10 +15,19 @@
                     <div class="card-body">
                         {{ $post->content }}
                     </div>
-                    <div class="card-footer d-flex justify-content-between">
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <small>{{ __('author') }}:</small> <a
+                                    href="/user/{{ $post->user->id }}">{{ $post->user->name }}</a>
+                            </div>
+                        </div>
                         <div>
-                            <small>{{ __('author') }}:</small> <a
-                                href="/user/{{ $post->user->id }}">{{ $post->user->name }}</a>
+                            <small>{{ __('tags') }}:
+                                @foreach ($post->tags as $tag)
+                                    <a class="badge badge-{{ $tag->style }}" href="#">{{ $tag->name }}</a>
+                                @endforeach
+                            </small>
                         </div>
                     </div>
                 </div>

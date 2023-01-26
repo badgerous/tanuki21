@@ -41,15 +41,25 @@
                                     <div class="card-body">
                                         {{ $post->content }}
                                     </div>
-                                    <div class="card-footer d-flex justify-content-between">
-                                        <div>
-                                            <small>{{ __('author') }}:</small> <a
-                                                href="/user/{{ $post->user->id }}">{{ $post->user->name }}</a>
-                                            <small>({{ $post->user->posts->count() }} {{ __('posts') }})</small>
+                                    <div class="card-footer">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <small>{{ __('author') }}:</small> <a
+                                                    href="/user/{{ $post->user->id }}">{{ $post->user->name }}</a>
+                                                <small>({{ $post->user->posts->count() }} {{ __('posts') }})</small>
+                                            </div>
+                                            <small class="font-italic">
+                                                {{ __('last updated') }}: {{ $post->updated_at }}
+                                            </small>
                                         </div>
-                                        <small class="font-italic">
-                                            {{ __('last updated') }}: {{ $post->updated_at }}
-                                        </small>
+                                        <div>
+                                            <small>{{ __('tags') }}:
+                                                @foreach ($post->tags as $tag)
+                                                    <a class="badge badge-{{ $tag->style }}"
+                                                        href="#">{{ $tag->name }}</a>
+                                                @endforeach
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
