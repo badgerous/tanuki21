@@ -43,7 +43,8 @@
                                     </div>
                                     <div class="card-footer d-flex justify-content-between">
                                         <div>
-                                            <small>{{ __('author') }}:</small> {{ $post->user->name }}
+                                            <small>{{ __('author') }}:</small> <a
+                                                href="/user/{{ $post->user->id }}">{{ $post->user->name }}</a>
                                             <small>({{ $post->user->posts->count() }} {{ __('posts') }})</small>
                                         </div>
                                         <small class="font-italic">
