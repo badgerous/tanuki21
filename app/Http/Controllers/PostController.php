@@ -46,6 +46,7 @@ class PostController extends Controller
             [
                 'title' => 'required|min:3',
                 'content' => 'required|min:5',
+                'image' => 'mimes:jpeg,jpg,bmp,png,gif'
             ]
         );
 
@@ -111,6 +112,7 @@ class PostController extends Controller
             [
                 'title' => 'required|min:3',
                 'content' => 'required|min:5',
+                'image' => 'mimes:jpeg,jpg,bmp,png,gif'
             ]
         );
 
