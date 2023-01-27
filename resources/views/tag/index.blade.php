@@ -30,6 +30,7 @@
                                             </a>
                                         </div>
                                         <div>
+                                            {{-- comment --}}
                                             <a class="btn" title="{{ __('edit tag') }}"
                                                 href="/tag/{{ $tag->id }}/edit"><i class="fas fa-pencil"></i></a>
                                             <form class="d-inline" action="/tag/{{ $tag->id }}" method="POST">
