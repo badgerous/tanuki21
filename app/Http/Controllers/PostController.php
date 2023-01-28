@@ -46,7 +46,7 @@ class PostController extends Controller
             [
                 'title' => 'required|min:3',
                 'content' => 'required|min:5',
-                'image' => 'mimes:jpeg,jpg,bmp,png,gif'
+                'image' => 'mimes:jpeg,jpg,bmp,png,gif',
             ]
         );
 
@@ -112,9 +112,30 @@ class PostController extends Controller
             [
                 'title' => 'required|min:3',
                 'content' => 'required|min:5',
-                'image' => 'mimes:jpeg,jpg,bmp,png,gif'
+                'image' => 'mimes:jpeg,jpg,bmp,png,gif',
             ]
         );
+
+        if ($request->image) {
+            $image = Image::make($request->image);
+            $width = $image->width();
+            $height = $image->height();
+            if ($width > $height) {
+                Image::make($request->image)
+                    ->widen(1200)
+                    ->save(public_path() . '/img/post/' . $post->id . '_big.jpg');
+                Image::make($request->image)
+                    ->widen(60)
+                    ->save(public_path() . '/img/post/' . $post->id . '_thumb.jpg');
+            } else {
+                Image::make($request->image)
+                    ->heighten(900)
+                    ->save(public_path() . '/img/post/' . $post->id . '_big.jpg');
+                Image::make($request->image)
+                    ->heighten(45)
+                    ->save(public_path() . '/img/post/' . $post->id . '_thumb.jpg');
+            }
+        }
 
         $post->update([
             'title' => $request->title,

@@ -30,13 +30,15 @@
                                     cols="30" rows="10" value="{{ old('content') ?? $post->content }}">{{ old('content') ?? $post->content }}</textarea>
                                 <small class="form-text text-danger">{!! $errors->first('content') !!}</small>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label" for="image">{{ __('Image') }}</label>
-                                <input type="file"
-                                    class="form-control {{ $errors->has('image') ? 'border-danger' : '' }}" id="image"
-                                    name="image" value="">
-                                <small class="form-text text-danger">{!! $errors->first('image') !!}</small>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file"
+                                        class="custom-file-input form-control {{ $errors->has('image') ? 'border-danger' : '' }}"
+                                        id="image" name="image" value="">
+                                    <label class="custom-file-label" for="image">{{ __('Choose image') }}</label>
+                                </div>
                             </div>
+                            <small class="form-text text-danger">{!! $errors->first('image') !!}</small>
 
                             @if (!$post->tags->isEmpty())
                                 <div class="form-group">
